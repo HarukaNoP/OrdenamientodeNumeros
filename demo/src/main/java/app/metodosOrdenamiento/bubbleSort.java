@@ -1,12 +1,15 @@
 package app.metodosOrdenamiento;
-
+import app.services.GeneradorDeArchivo;
 public class bubbleSort {
     private int[] arr;
+    private GeneradorDeArchivo generadorDeArchivo = new GeneradorDeArchivo();
 
     public bubbleSort(int[] arr) {
         this.arr = arr;
     }
 public void ordenar(){
+        generadorDeArchivo.crearArchivo("bubbleSort.txt");
+        generadorDeArchivo.escribirTextoEnArchivo("Numeros ordenados con algoritmo Bubble Sort\n", "bubbleSort.txt");
             int temporal;
         for(int j = 0; j<arr.length-1;++j){
         for(int i = 0; i<arr.length-1; i++){
@@ -17,11 +20,10 @@ public void ordenar(){
             }
         }
     }
-    System.out.println("Arreglo ordenado con Bubble Sort:");
     for(int i = 0; i<arr.length; i++){
-        System.out.print(arr[i] + " ");
+        generadorDeArchivo.escribirNumeroEnArchivo(Integer.toString(arr[i]), "bubbleSort.txt");
     }
-    System.out.println(); // Para una nueva línea al final
+    System.out.println("Archivo bubbleSort.txt generado correctamente.");
 }
 
 }

@@ -1,8 +1,9 @@
 package app.metodosOrdenamiento;
-
+import app.services.GeneradorDeArchivo;
 public class countingSort {
     private int[] arr;
     private int size;
+    private GeneradorDeArchivo generadorDeArchivo = new GeneradorDeArchivo();
 
     public countingSort(int[] arr) {
         this.arr = arr;
@@ -10,33 +11,40 @@ public class countingSort {
     }
 
     public void ordenar(){
+        generadorDeArchivo.crearArchivo("countingSort.txt");
+        generadorDeArchivo.escribirTextoEnArchivo("Numeros ordenados con algoritmo Counting Sort\n", "countingSort.txt");
         int maximo = arr[0];
+        int minimo = arr[0];
         for(int i = 1; i < size; i++){
             if(arr[i] > maximo){
                 maximo = arr[i];
             }
+            if(arr[i] < minimo){
+                minimo = arr[i];
+            }
         }
         //cuento la cantidad de veces que se repite cada numero
-        int[] contador = new int[maximo+1];
+        int rango = maximo - minimo + 1;
+        int[] contador = new int[rango];
         int[] ordenado = new int[size];
         for(int i = 0; i<size; i++){
-            contador[arr[i]]++;
+            contador[arr[i] - minimo]++;
         }
 
         //Suma de cada posición en el contador secuencialmente
-        for(int i = 1; i<size+1; i++){
+        for(int i = 1; i<rango; i++){
             contador[i] += contador[i-1];
         }
         
         //Ordeno los números según su indice
         for(int i = 0; i< size; i++){
-            ordenado[contador[arr[i]]-1] = arr[i];
-            contador[arr[i]]--;
+            ordenado[contador[arr[i] - minimo]-1] = arr[i];
+            contador[arr[i] - minimo]--;
         }
-        System.out.println("Arreglo ordenado con Counting Sort:");
+
         for(int i=0;i<ordenado.length;i++){
-            System.out.print(ordenado[i] + " ");
+            generadorDeArchivo.escribirNumeroEnArchivo(Integer.toString(ordenado[i]), "countingSort.txt");
         }
-        System.out.println();
+        System.out.println("Archivo countingSort.txt generado correctamente.");
     }
 }
