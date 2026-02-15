@@ -1,8 +1,9 @@
 package app.metodosOrdenamiento;
-
+import app.services.GeneradorDeArchivo;
 public class mergeSort {
     private int[] arr;
     private int size;
+    private GeneradorDeArchivo generadorDeArchivo = new GeneradorDeArchivo();
 
     public mergeSort(int[] arr) {
         this.arr = arr;
@@ -10,11 +11,13 @@ public class mergeSort {
      }
 
         public void ordenar(){
+                generadorDeArchivo.crearArchivo("mergeSort.txt");
+                generadorDeArchivo.escribirTextoEnArchivo("Numeros ordenados con algoritmo Merge Sort\n", "mergeSort.txt");
                 ordenarMezcla(arr, 0, size-1);
     for(int i=0;i<size;i++){
-        System.out.print(arr[i] + " ");
+        generadorDeArchivo.escribirNumeroEnArchivo(String.valueOf(arr[i]), "mergeSort.txt");
         }
-        System.out.println();
+        System.out.println("Archivo mergeSort.txt generado correctamente.");
     }
 
         private void ordenarMezcla(int[] arr, int izquierda, int derecha) {

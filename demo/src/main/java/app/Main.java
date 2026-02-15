@@ -1,12 +1,56 @@
 package app;
 import app.metodosOrdenamiento.*;
+import app.services.*;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {5, 2, 9, 1, 5, 6}; //arreglo temporal para pruebas
-        int opcion;
+        int opcion; int opcion2;
+        int[] arr = null;
         Scanner uScanner = new Scanner(System.in);
+        Reproductor reproductor = new Reproductor();
+        reproductor.reproducirMusica("AntiEstres.wav");
 
+        do{
+            System.out.println("------MENU PRINCIPAL------");
+            System.out.println("Generar números aleatoriamente, seleccione el rango: \n"
+                +"1. -10,000 a 10,000\n"
+                +"2. -100,000 a 100,000\n"
+                +"3. -10,000,000 a 10,000,000\n"
+                +"4. Salir"
+            );
+            System.out.print("Ingrese el rango para generar números:");
+            opcion2 = uScanner.nextInt();
+            switch(opcion2){
+                case 1:
+                    arr = new int[10000];
+                    GeneradorDeNumeros generador1 = new GeneradorDeNumeros(10000);
+                    arr = generador1.generarNumeros(-10000, 10000);
+                    System.out.println("Numeros generados correctamente.");
+                    opcion2 = 0; // Salir del menú de generación después de generar los números
+                    break;
+                case 2:
+                    arr = new int[100000];
+                    GeneradorDeNumeros generador2 = new GeneradorDeNumeros(100000);
+                    arr = generador2.generarNumeros(-100000, 100000);
+                    System.out.println("Numeros generados correctamente.");
+                    opcion2 = 0; // Salir del menú de generación después de generar los números
+                    break;
+                case 3:
+                    arr = new int[10000000];
+                    GeneradorDeNumeros generador3 = new GeneradorDeNumeros(10000000);
+                    arr = generador3.generarNumeros(-10000000, 10000000);
+                    System.out.println("Numeros generados correctamente.");
+                    opcion2 = 0; // Salir del menú de generación después de generar los números
+                    break;
+                case 4:
+                    opcion2 = 0; 
+                    break;
+                default:
+                    System.out.println("Opción invalida.");
+                    break;
+            }
+
+        }while(opcion2 != 0);
         do{
             System.out.println("------MENU DE ORDENAMIENTO------");
             System.out.println("1. Bubble Sort\n"
@@ -25,6 +69,7 @@ public class Main {
                 case 1:
                     bubbleSort bubbleSort = new bubbleSort(arr);
                     bubbleSort.ordenar();
+
                     espera();
                     break;
                 case 2:
@@ -80,6 +125,5 @@ public class Main {
         if (tecla.hasNextLine()) {
             tecla.nextLine();
         }
-        
     }
 }
