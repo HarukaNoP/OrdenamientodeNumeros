@@ -75,11 +75,11 @@ public class Main {
     }
 
     public static void espera(){
-        Scanner tecla = new Scanner(System.in);
+       Scanner tecla = new Scanner(System.in);
         System.out.println("Presione Enter para continuar...");
         if (tecla.hasNextLine()) {
             tecla.nextLine();
         }
-        tecla.close();
+        
     }
 }
