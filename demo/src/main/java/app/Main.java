@@ -11,40 +11,24 @@ public class Main {
         reproductor.reproducirMusica("AntiEstres.wav");
 
         do{
-            System.out.println("------MENU PRINCIPAL------");
-            System.out.println("Generar números aleatoriamente, seleccione el rango: \n"
-                +"1. -10,000 a 10,000\n"
-                +"2. -100,000 a 100,000\n"
-                +"3. -10,000,000 a 10,000,000\n"
-                +"4. Salir"
+            System.out.println("------GENERADOR Y ANALIZADOR DE NÚMEROS ALEATORIOS------");
+            System.out.println("-----MENÚ PRINCIPAL----- \n"
+                +"1. Iniciar\n"
+                +"2. Salir"
             );
             System.out.print("Ingrese el rango para generar números:");
             opcion2 = uScanner.nextInt();
             switch(opcion2){
                 case 1:
                     arr = new int[10000];
-                    GeneradorDeNumeros generador1 = new GeneradorDeNumeros(10000);
-                    arr = generador1.generarNumeros(-10000, 10000);
+                    GeneradorDeNumeros generador1 = new GeneradorDeNumeros(10000000);
+                    arr = generador1.generarNumeros(-100000, 100000);
                     System.out.println("Numeros generados correctamente.");
                     opcion2 = 0; // Salir del menú de generación después de generar los números
                     break;
                 case 2:
-                    arr = new int[100000];
-                    GeneradorDeNumeros generador2 = new GeneradorDeNumeros(100000);
-                    arr = generador2.generarNumeros(-100000, 100000);
-                    System.out.println("Numeros generados correctamente.");
-                    opcion2 = 0; // Salir del menú de generación después de generar los números
-                    break;
-                case 3:
-                    arr = new int[10000000];
-                    GeneradorDeNumeros generador3 = new GeneradorDeNumeros(10000000);
-                    arr = generador3.generarNumeros(-10000000, 10000000);
-                    System.out.println("Numeros generados correctamente.");
-                    opcion2 = 0; // Salir del menú de generación después de generar los números
-                    break;
-                case 4:
-                    opcion2 = 0; 
-                    break;
+                    System.out.println("Saliendo del programa...");
+                    return; // Salir del programa
                 default:
                     System.out.println("Opción invalida.");
                     break;

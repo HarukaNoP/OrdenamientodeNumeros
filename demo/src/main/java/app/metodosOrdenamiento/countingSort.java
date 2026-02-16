@@ -1,9 +1,11 @@
 package app.metodosOrdenamiento;
 import app.services.GeneradorDeArchivo;
+import app.services.Contador;
 public class countingSort {
     private int[] arr;
     private int size;
     private GeneradorDeArchivo generadorDeArchivo = new GeneradorDeArchivo();
+    private Contador contadorT = new Contador();
 
     public countingSort(int[] arr) {
         this.arr = arr;
@@ -13,6 +15,8 @@ public class countingSort {
     public void ordenar(){
         generadorDeArchivo.crearArchivo("countingSort.txt");
         generadorDeArchivo.escribirTextoEnArchivo("Numeros ordenados con algoritmo Counting Sort\n", "countingSort.txt");
+        System.out.println("Ordenando con Counting Sort, espere...");
+        contadorT.iniciarTiempo();
         int maximo = arr[0];
         int minimo = arr[0];
         for(int i = 1; i < size; i++){
@@ -41,10 +45,11 @@ public class countingSort {
             ordenado[contador[arr[i] - minimo]-1] = arr[i];
             contador[arr[i] - minimo]--;
         }
-
+        contadorT.finalizarTiempo();
         for(int i=0;i<ordenado.length;i++){
             generadorDeArchivo.escribirNumeroEnArchivo(Integer.toString(ordenado[i]), "countingSort.txt");
         }
+        generadorDeArchivo.escribirTextoEnArchivo("\n\nRealizado en: " + contadorT.getTiempoDeEjecucion() + " milisegundos", "countingSort.txt");
         System.out.println("Archivo countingSort.txt generado correctamente.");
     }
 }

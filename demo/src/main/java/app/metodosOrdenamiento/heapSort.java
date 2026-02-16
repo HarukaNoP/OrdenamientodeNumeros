@@ -1,10 +1,11 @@
 package app.metodosOrdenamiento;
 import app.services.GeneradorDeArchivo;
+import app.services.Contador;
 public class heapSort {
     private int[] arr;
     private int size;
     private GeneradorDeArchivo generadorDeArchivo = new GeneradorDeArchivo();
-
+    private Contador contadorT = new Contador();
     public heapSort(int[] arr) {
         this.arr = arr;
         this.size = arr.length;
@@ -13,10 +14,15 @@ public class heapSort {
         public void ordenar(){
         generadorDeArchivo.crearArchivo("heapSort.txt");
         generadorDeArchivo.escribirTextoEnArchivo("Numeros ordenados con algoritmo Heap Sort\n", "heapSort.txt");
+        System.out.println("Ordenando con Heap Sort, espere...");
+        contadorT.iniciarTiempo();
         ordenarMonticulos(arr);
         for(int i=0;i<size;i++){
             generadorDeArchivo.escribirNumeroEnArchivo(String.valueOf(arr[i]), "heapSort.txt");
         }
+        contadorT.finalizarTiempo();
+        generadorDeArchivo.escribirTextoEnArchivo("\n\nRealizado en: " + contadorT.getTiempoDeEjecucion() + " milisegundos", "heapSort.txt");
+        
         System.out.println("Archivo heapSort.txt generado correctamente.");
     }
 

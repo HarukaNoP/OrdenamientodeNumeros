@@ -1,9 +1,12 @@
 package app.metodosOrdenamiento;
 import app.services.GeneradorDeArchivo;
+import app.services.Contador;
 public class quickSort {
     private int[] arr;
     private int size;
     private GeneradorDeArchivo generadorDeArchivo = new GeneradorDeArchivo();
+    private Contador contadorT = new Contador();
+
     public quickSort(int[] arr) {
         this.arr = arr;
         this.size = arr.length;
@@ -12,10 +15,14 @@ public class quickSort {
         public void ordenar(){
                 generadorDeArchivo.crearArchivo("quickSort.txt");
                 generadorDeArchivo.escribirTextoEnArchivo("Numeros ordenados con algoritmo Quick Sort\n", "quickSort.txt");
+                System.out.println("Ordenando con Quick Sort, espere...");
+                contadorT.iniciarTiempo();
                 ordenarRapido(arr, 0, size-1);
                 for(int i=0;i<size;i++){
                  generadorDeArchivo.escribirNumeroEnArchivo(String.valueOf(arr[i]), "quickSort.txt");
                 }
+                contadorT.finalizarTiempo();
+                generadorDeArchivo.escribirTextoEnArchivo("\n\nRealizado en: " + contadorT.getTiempoDeEjecucion() + " milisegundos", "quickSort.txt");
                 System.out.println("Archivo quickSort.txt generado correctamente.");
         }
 
