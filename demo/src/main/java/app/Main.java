@@ -16,13 +16,13 @@ public class Main {
                 +"1. Iniciar\n"
                 +"2. Salir"
             );
-            System.out.print("Ingrese el rango para generar números:");
+            System.out.print("Seleccione una opción :");
             opcion2 = uScanner.nextInt();
             switch(opcion2){
                 case 1:
                     arr = new int[10000];
-                    GeneradorDeNumeros generador1 = new GeneradorDeNumeros(10000000);
-                    arr = generador1.generarNumeros(-100000, 100000);
+                    GeneradorDeNumeros generador1 = new GeneradorDeNumeros(10000);//Cambiar para generar los 10 millones de números
+                    arr = generador1.generarNumeros(-100000000, 100000000); 
                     System.out.println("Numeros generados correctamente.");
                     opcion2 = 0; // Salir del menú de generación después de generar los números
                     break;
@@ -37,14 +37,14 @@ public class Main {
         }while(opcion2 != 0);
         do{
             System.out.println("------MENU DE ORDENAMIENTO------");
-            System.out.println("1. Bubble Sort\n"
-                             + "2. Counting Sort\n"
-                             + "3. Heap Sort\n"
-                             + "4. Insertion Sort\n"
-                             + "5. Merge Sort\n"
-                             + "6. Quick Sort\n"
-                             + "7. Selection Sort\n"
-                             + "8. Shell Sort\n"
+            System.out.println("1. Bubble Sort\n" //intro y bubble Jeyling
+                             + "2. Counting Sort\n" //Aarón 
+                             + "3. Heap Sort\n" //Aarón
+                             + "4. Insertion Sort\n" //paola
+                             + "5. Merge Sort\n" //paola
+                             + "6. Quick Sort\n" //Gerson
+                             + "7. Selection Sort\n" //Gerson
+                             + "8. Shell Sort\n" //yo :)
                              + "9. Salir");
             System.out.print("Ingrese su opción: ");
             opcion = uScanner.nextInt();
